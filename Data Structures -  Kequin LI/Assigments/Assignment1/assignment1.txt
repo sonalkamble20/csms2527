@@ -1,0 +1,31 @@
+Spring 2025
+CPS593-03: Programming and Data Structures
+
+Assignment #1
+Due date: February 3, 2025
+
+
+Write a program
+(1) to read a list of exam scores (integers in the range 0..100) and
+(2) to compute the total number of grades and the number of grades in each letter-grade category:
+
+A: 90-100
+B: 80-89
+C: 70-79
+D: 60-69
+F: 0-59
+
+The end of the input is indicated by a negative integer as a sentinel value.
+
+For example, if the input is
+75 63 87 84 71 92 81 50 78 65 76 98 74 85 72 66 -1
+
+the output would be:
+
+Total number of grades = 16
+Number of A's = 2
+Number of B's = 4
+Number of C's = 6
+Number of D's = 3
+Number of F's = 1
+

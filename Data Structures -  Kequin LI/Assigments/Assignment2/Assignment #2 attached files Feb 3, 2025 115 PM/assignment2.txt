@@ -1,0 +1,17 @@
+Spring 2025
+CPS593-03: Programming and Data Structures
+
+Assignment #1
+Due date: February 13, 2025
+
+
+Implement the Statistician class.
+
+A description of the class is given in:
+https://www.cs.colorado.edu/~main/docs/
+Package: edu.colorado.homework
+
+A framework of the class can be downloaded from:
+https://www.cs.colorado.edu/~main/edu/colorado/homework/
+Statistician.java
+

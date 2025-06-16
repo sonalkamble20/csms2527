@@ -1,0 +1,62 @@
+Supply the following numbers to s:
+0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+
+The information of statistician s is
+  length = 10
+  sum = 45.0
+  mean = 4.5
+  minimum = 0.0
+  maximum = 9.0
+
+Supply the following numbers to t:
+0.0 0.5 1.0 1.5 2.0 9.0 8.5 8.0 7.5 7.0 
+
+The information of statistician t is
+  length = 10
+  sum = 45.0
+  mean = 4.5
+  minimum = 0.0
+  maximum = 9.0
+
+s equals to t
+
+The information of statistician t after t.clear() is
+  length = 0
+  sum = 0.0
+  mean = NaN
+  minimum = NaN
+  maximum = NaN
+
+Supply the following numbers to t:
+0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0 
+
+The information of statistician t is
+  length = 20
+  sum = 105.0
+  mean = 5.25
+  minimum = 0.5
+  maximum = 10.0
+
+The information of statistician u=s+t is
+  length = 30
+  sum = 150.0
+  mean = 5.0
+  minimum = 0.0
+  maximum = 10.0
+
+s does not equal to u
+
+The information of statistician s after s.addAll(t) is
+  length = 30
+  sum = 150.0
+  mean = 5.0
+  minimum = 0.0
+  maximum = 10.0
+
+The information of statistician s after s.clear() is
+  length = 0
+  sum = 0.0
+  mean = NaN
+  minimum = NaN
+  maximum = NaN
+

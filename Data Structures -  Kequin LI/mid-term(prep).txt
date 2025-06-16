@@ -1,0 +1,104 @@
+// 1. Short answer questions (5 points each)
+
+// (a) What is an accessor method?
+// An accessor method is a method that retrieves or "gets" the value of a private instance variable without modifying it.
+// Example:
+public int getAge() {
+    return age;
+}
+
+// (b) What is a static method of a class?
+// A static method is a method that belongs to the class rather than an instance.
+// It can be called without creating an object of the class.
+// Example:
+public static int add(int a, int b) {
+    return a + b;
+}
+
+// 2. True/False Justifications (5 points each)
+
+// (a) Every Java class must have a 'main' method.
+// False - Not every Java class needs a main method. Only the entry point class does.
+
+// (b) In 'System.out.println(n);', 'out' activates the println() method of the System class.
+// False - 'out' is a PrintStream object, println() is invoked on it.
+
+// (c) A non-static method cannot call a static method.
+// False - A non-static method CAN call a static method.
+
+// (d) Given:
+// public static void reset(Location p) {
+//     p = new Location(0,0);
+// }
+// Does calling reset(p) change p to (0,0)?
+// False - Java passes object references by value, so reassignment does not affect the original object.
+
+// (e) Consider:
+// IntArrayBag b1 = new IntArrayBag();
+// IntArrayBag b2 = new IntArrayBag(20);
+// All four occurrences of 'IntArrayBag' are the name of a class.
+// True - All occurrences of 'IntArrayBag' refer to the class type.
+
+// 3. Write the following method: (15 points)
+// public static boolean reverse(int[] a, int[] b)
+// Precondition: 'a' and 'b' are not null.
+// Postcondition: Returns true if 'b' is the reverse of 'a'.
+public static boolean reverse(int[] a, int[] b) {
+    if (a == null || b == null || a.length != b.length) {
+        return false;
+    }
+    int n = a.length;
+    for (int i = 0; i < n; i++) {
+        if (a[i] != b[n - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// 4. Write a new method for the IntArrayBag class: (15 points)
+// public static void addAll(IntArrayBag b1, IntArrayBag b2)
+// Precondition: b1 and b2 are not null.
+// Postcondition: The elements from b2 have been added to b1.
+public static void addAll(IntArrayBag b1, IntArrayBag b2) {
+    if (b1 == null || b2 == null) {
+        throw new IllegalArgumentException("Bags must not be null.");
+    }
+    for (int i = 0; i < b2.size(); i++) {
+        b1.add(b2.getElementAt(i));
+    }
+}
+
+// 5. Implement the following new static method for the IntNode class: (15 points)
+// public static IntNode arrayToList(int[] a)
+// Precondition: 'a' is an array.
+// Postcondition: Returns a head reference to a linked list containing elements of 'a' in order.
+public static IntNode arrayToList(int[] a) {
+    if (a == null || a.length == 0) {
+        return null;
+    }
+    IntNode head = new IntNode(a[0], null);
+    IntNode current = head;
+    for (int i = 1; i < a.length; i++) {
+        current.setLink(new IntNode(a[i], null));
+        current = current.getLink();
+    }
+    return head;
+}
+
+// 6. Implement the following new static method for the IntNode class: (15 points)
+// public static void duplicate(IntNode head)
+// Precondition: 'head' is a head reference to a linked list.
+// Postcondition: The linked list is duplicated, e.g., head -> (1, 2, 3) becomes (1, 1, 2, 2, 3, 3).
+public static void duplicate(IntNode head) {
+    if (head == null) {
+        return;
+    }
+    IntNode current = head;
+    while (current != null) {
+        IntNode duplicate = new IntNode(current.getData(), current.getLink());
+        current.setLink(duplicate);
+        current = duplicate.getLink();
+    }
+}
+

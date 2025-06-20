@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema({
     userid: {type: String, unique: true, required: true},
     postid: {type: String, unnique: true, required: true},
     content: {type: String},
-    likes: {type: number, required: true},
+    likes: {type: Number, required: true},
     comments: [String]
 })
 
@@ -57,7 +57,6 @@ async function deletePost(postid, userid) {
     const user = await getUser(userid);
 
     if(!user) throw Error('user does not exist!');
-
 
     const post = await getPost(postid);
 

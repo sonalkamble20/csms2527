@@ -57,10 +57,15 @@ async function deleteUser(id) {
     return await User.deleteOne({ _id: id });
 }
 
-// 5. export functions to routes
+async function getUserProfile(username) {
+    const user = await User.findOne({ username }).select('-password').lean();
+    return user;
+}
+
 module.exports = {
     register,
     login,
     updatePassword,
-    deleteUser
+    deleteUser,
+    getUserProfile
 };

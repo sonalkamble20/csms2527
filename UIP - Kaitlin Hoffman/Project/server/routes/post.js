@@ -1,45 +1,51 @@
-
 const express = require("express");
-const Post = require('../models/post');
+const { uploadPost, openPost, updatePost, deletePost } = require("../models/post");
 const router = express.Router();
 
-// 2. create all routes to access database
 router
-  .post('/post', async (req, res) => {
+  .post('/open', async (req, res) => {
     try {
-      const post = await Post.openPost(req.body.postid, req.body.userid);
-      res.send({...post});
-    } catch(error) {
-      res.status(401).send({ message: error.message });
+      const post = await openPost(req.body.postid);
+      res.json(post);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
     }
   })
 
   .post('/upload', async (req, res) => {
     try {
-      const post = await Post.uploadPost(req.body.content, req.body.userid);
-      res.send({...post});
-    } catch(error) {
-      res.status(401).send({ message: error.message }); 
+      const { content, username } = req.body;
+      if (!content || !username) {
+        return res.status(400).json({ message: "Content and username are required" });
+      }
+      const post = await uploadPost(content, username);
+      res.json(post);
+    } catch (error) {
+      console.error("Error uploading post:", error);
+      res.status(400).json({ message: error.message });
     }
   })
 
-  .put('/updatePost', async (req, res) => {
+  .put('/update', async (req, res) => {
     try {
-      const post = await Post.updatePost(req.body.postid, req.body.userid);
-      res.send({...post});
-    } catch(error) {
-      res.status(401).send({ message: error.message });
+      const post = await updatePost(req.body.postid, req.body.content);
+      res.json(post);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
     }
   })
 
-  .delete('/deletePost', async (req, res) => {
+.delete('/delete', async (req, res) => {
     try {
-      await Post.deletePost(req.body.postid, req.body.userid);
-      res.send({ success: "Post deleted" });
-    } catch(error) {
-      res.status(401).send({ message: error.message });
+      const { postid } = req.body;
+      if (!postid) return res.status(400).json({ message: 'postid required' });
+  
+      await deletePost(postid);
+      res.json({ success: "Post deleted" });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
     }
-  })
+  });
+  
 
-// 3. export router for use in index.js
 module.exports = router;
